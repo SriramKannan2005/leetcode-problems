@@ -1,14 +1,25 @@
 class Solution {
     int count = 0;
-    public int totalNQueens(int n) {
-       
-        char[][] board = new char[n][n];
-        for(int i = 0;i < n;i++)
+    public boolean isSafe(char[][] board,int row,int col)
+    {
+        for(int i = 0;i < row;i++)
         {
-            Arrays.fill(board[i],'.');
+            if(board[i][col] == 'Q')
+            {
+                return false;
+            }
+            for(int j = 0;j < board.length;j++)
+            {
+                if( board[i][j] == 'Q')
+                {
+                    if(Math.abs(row-i) == Math.abs(col-j))
+                    {
+                        return false;
+                    }
+                }
+            }
         }
-        place(board,0);
-        return count;
+        return true;
     }
     public void place(char[][] board,int row)
     {
@@ -33,25 +44,16 @@ class Solution {
             }
         }
     }
-    public boolean isSafe(char[][] board,int row,int col)
-    {
-        for(int i = 0;i < row;i++)
+    public int totalNQueens(int n) {
+       
+        char[][] board = new char[n][n];
+        for(int i = 0;i < n;i++)
         {
-            if(board[i][col] == 'Q')
-            {
-                return false;
-            }
-            for(int j = 0;j < board.length;j++)
-            {
-                if( board[i][j] == 'Q')
-                {
-                    if(Math.abs(row-i) == Math.abs(col-j))
-                    {
-                        return false;
-                    }
-                }
-            }
+            Arrays.fill(board[i],'.');
         }
-        return true;
+        place(board,0);
+        return count;
     }
+    
+    
     }
