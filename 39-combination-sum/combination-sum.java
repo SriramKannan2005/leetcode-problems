@@ -20,9 +20,10 @@ class Solution {
         for(int i=start;i<candidates.length;i++)
         {
             temp.add(candidates[i]);
-            target=target-candidates[i];
-            backtrack(candidates,target,result,temp,i);
-            target=target+candidates[i];
+            // target=target-candidates[i];
+            // backtrack(candidates,target;,result,temp,i);
+            backtrack(candidates,target-candidates[i],result,temp,i);
+            // target=target+candidates[i];
             temp.remove(temp.size()-1);
         }
     }
