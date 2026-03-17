@@ -2,32 +2,37 @@ class Solution {
     public List<List<Integer>> permuteUnique(int[] nums) {
         List<List<Integer>> result = new ArrayList<>();
         List<Integer> temp = new ArrayList<>();
-        boolean[] res = new boolean[nums.length];
-        backtrack(result,temp,nums,res);
+        boolean[] used = new boolean[nums.length];
+
+        Arrays.sort(nums); 
+
+        backtrack(result, temp, nums, used);
         return result;
     }
-    public void backtrack(List<List<Integer>> result, List<Integer> temp, int[] nums,boolean[] res)
-    {
-        if(temp.size() == nums.length)
-        {
-            if(!result.contains(temp))
-            {
+
+    public void backtrack(List<List<Integer>> result, List<Integer> temp, int[] nums, boolean[] used) {
+
+        if (temp.size() == nums.length) {
             result.add(new ArrayList<>(temp));
-            
-            }
             return;
         }
-        for(int i=0;i<nums.length;i++)
-        {
-            if(res[i])
-            {
+
+        for (int i = 0; i < nums.length; i++) {
+
+            if (used[i]) continue;
+
+            // 🔥 skip duplicates EARLY
+            if (i > 0 && nums[i] == nums[i - 1] && !used[i - 1]) {
                 continue;
             }
+
             temp.add(nums[i]);
-            res[i] = true;
-            backtrack(result,temp,nums,res);
-            temp.remove(temp.size()-1);
-            res[i] = false;
+            used[i] = true;
+
+            backtrack(result, temp, nums, used);
+
+            temp.remove(temp.size() - 1);
+            used[i] = false;
         }
     }
 }
