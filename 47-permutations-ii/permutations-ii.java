@@ -13,8 +13,9 @@ class Solution {
             if(!result.contains(temp))
             {
             result.add(new ArrayList<>(temp));
-            return;
+            
             }
+            return;
         }
         for(int i=0;i<nums.length;i++)
         {
