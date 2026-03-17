@@ -13,15 +13,17 @@ class Solution {
     public void backtrack(List<List<Integer>> result, List<Integer> temp, int[] nums, boolean[] used) {
 
         if (temp.size() == nums.length) {
+            if(!result.contains(temp)){
             result.add(new ArrayList<>(temp));
             return;
-        }
+        }}
 
         for (int i = 0; i < nums.length; i++) {
 
-            if (used[i]) continue;
+            if (used[i]) 
+            continue;
 
-            // 🔥 skip duplicates EARLY
+           
             if (i > 0 && nums[i] == nums[i - 1] && !used[i - 1]) {
                 continue;
             }
