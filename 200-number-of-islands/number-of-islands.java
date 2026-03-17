@@ -1,41 +1,34 @@
 class Solution {
-        
-    public static void depthFirstSearch(char[][]grid,int i,int j,int row,int col)
-    {
-        grid[i][j]='0';
-        int[][]dir={{0,1},{1,0},{0,-1},{-1,0}};
-        for(int x=0;x<4;x++)
+    public void backtrack(char[][] grid, int row, int col){
+        if(row < 0 || row >= grid.length || col < 0 || col >= grid[0].length || grid[row][col] == '0')
         {
-            int ni=i+dir[x][0];
-            int nj=j+dir[x][1];
-            if(ni>=0&&nj>=0&&ni<row&&nj<col&&grid[ni][nj]=='1')
-            {
-                depthFirstSearch(grid,ni,nj,row,col);
-            }
-
+            return;
         }
-
+        grid[row][col] = '0';
+        backtrack(grid,row+1,col);
+        backtrack(grid,row,col+1);
+        backtrack(grid,row-1,col);
+        backtrack(grid,row,col-1);
     }
-
     public int numIslands(char[][] grid) {
-       char[][] grid1=grid;
-		int row=grid1.length;
-		int col=grid1[0].length;
-		int count=0;
-		for(int i=0;i<row;i++)
-		{
-		for(int j=0;j<col;j++)
-		{
-		   if(grid1[i][j]=='1')
-		   {
-		       depthFirstSearch(grid1,i,j,row,col);
-		       count++;
-		   }
-		   
-		}
-		
-		}
-
+        if(grid == null || grid.length == 0)
+        {
+            return 0;
+        }
+        int row = grid.length;
+        int col = grid[0].length;
+        int count = 0;
+        for(int i=0;i<row;i++)
+        {
+            for(int j=0;j<col;j++)
+            {
+                if(grid[i][j] == '1')
+                {
+                    backtrack(grid,i,j);
+                    count++;
+                }
+            }
+        }
         return count;
     }
 }
