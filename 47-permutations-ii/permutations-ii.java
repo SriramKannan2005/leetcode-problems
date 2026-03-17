@@ -24,9 +24,7 @@ class Solution {
             continue;
 
            
-            if (i > 0 && nums[i] == nums[i - 1] && !used[i - 1]) {
-                continue;
-            }
+            
 
             temp.add(nums[i]);
             used[i] = true;
