@@ -21,7 +21,7 @@ class Solution {
             return result;
         }
         Queue<TreeNode> q = new LinkedList<>();
-        q.add(root);
+        q.offer(root);
         while (!q.isEmpty()) {
              temp=new ArrayList<>();
              int size=q.size();
@@ -29,10 +29,10 @@ class Solution {
             TreeNode cur = q.poll();
            temp.add(cur.val);
             if (cur.left != null) {
-                q.add(cur.left);
+                q.offer(cur.left);
             }
             if (cur.right != null) {
-                q.add(cur.right);
+                q.offer(cur.right);
             }}
              result.add((temp));
     }
