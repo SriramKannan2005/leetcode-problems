@@ -14,29 +14,12 @@
  * }
  */
 class Solution {
-    ArrayList<Integer> result=new ArrayList<>();
-    public void inorder(TreeNode root)
-    {
-        if(root==null)
-        {
-            return ;
-        }
-        inorder(root.left);
-        result.add(root.val);
-        inorder(root.right);
-        
-    
+    public boolean isValid(TreeNode root,long min,long max){
+        if(root == null) return true;
+        if(root.val <= min || root.val >= max) return false;
+        return isValid(root.left,min,root.val) && isValid(root.right,root.val,max);
     }
-  
     public boolean isValidBST(TreeNode root) {
-        inorder(root);
-        for(int i=1;i<result.size();i++)
-        {
-            if(result.get(i)<=result.get(i-1))
-            {
-                return false;
-            }
-        }
-        return true;
+        return isValid(root,Long.MIN_VALUE,Long.MAX_VALUE);
     }
 }
