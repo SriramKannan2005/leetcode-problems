@@ -28,7 +28,7 @@ class Solution {
     
     }
     public int kthSmallest(TreeNode root, int k) {
-        result.clear();
+     
         inorder(root);
        
         return result.get(k-1);
