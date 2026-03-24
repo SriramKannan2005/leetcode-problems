@@ -1,19 +1,16 @@
 class Solution 
 {
-    public static void depthFirstSearch(int[][]grid,int i,int j,int ncolor,int precolor,int row,int col)
+    public static void backtrack(int[][]grid,int ncolor,int precolor,int row,int col)
     {
-        grid[i][j]=ncolor;
-        int[][]dir={{0,1},{1,0},{0,-1},{-1,0}};
-        for(int x=0;x<4;x++)
+       if(row < 0 || row >= grid.length || col < 0 || col >= grid[0].length || grid[row][col] != precolor)
         {
-            int ni=i+dir[x][0];
-            int nj=j+dir[x][1];
-            if(ni>=0&&nj>=0&&ni<row&&nj<col&&grid[ni][nj]==precolor)
-            {
-                depthFirstSearch(grid,ni,nj,ncolor,precolor,row,col);
-            }
-
+            return;
         }
+        grid[row][col] = ncolor;
+        backtrack(grid,ncolor,precolor,row+1,col);
+        backtrack(grid,ncolor,precolor,row,col+1);
+        backtrack(grid,ncolor,precolor,row-1,col);
+        backtrack(grid,ncolor,precolor,row,col-1);
 
     }
 
@@ -28,7 +25,7 @@ class Solution
         {
             return grid;
         }
-		depthFirstSearch(grid,sr,sc,ncolor,precolor,row,col);
+		backtrack(grid,ncolor,precolor,sr,sc);
         return grid;
 		}
 
