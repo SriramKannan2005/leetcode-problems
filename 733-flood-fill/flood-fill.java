@@ -28,8 +28,4 @@ class Solution
 		backtrack(grid,ncolor,precolor,sr,sc);
         return grid;
 		}
-
-		
-
-        
     }
