@@ -42,7 +42,8 @@ class Solution {
          }
          
      }
-       
+     
+       // using streams;
      return count!= numCourses ? new int [0]: res.stream().mapToInt(i -> i).toArray();
     }
 }
