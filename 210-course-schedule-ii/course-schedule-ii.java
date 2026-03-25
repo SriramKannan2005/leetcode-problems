@@ -42,8 +42,12 @@ class Solution {
          }
          
      }
-     
-       // using streams;
-     return count!= numCourses ? new int [0]: res.stream().mapToInt(i -> i).toArray();
+     // using manual way of converrting the arraylist to the array using for loop;
+       int [] result=new int [res.size()];
+     for(int i=0;i< res.size();i++)
+     {
+        result[i]=res.get(i);
+     }
+     return count!= numCourses ? new int [0]: result;
     }
 }
