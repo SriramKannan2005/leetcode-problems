@@ -2,26 +2,15 @@ class Solution {
 
     public int numberOfSubstrings(String s) {
 
-        int[] freq = new int[3];
-
-        int left = 0;
+            Map<Character, Integer> map = new HashMap<>();
         int count = 0;
-
-        for (int right = 0; right < s.length(); right++) {
-
-            freq[s.charAt(right) - 'a']++;
-
-            // while window contains a,b,c
-            while (freq[0] > 0 && freq[1] > 0 && freq[2] > 0) {
-
-                count += s.length() - right;
-
-                freq[s.charAt(left) - 'a']--;
-
-                left++;
+        for (int i = 0; i < s.length(); i++) {
+            map.put(s.charAt(i), i);
+            if (map.containsKey('a') && map.containsKey('b') && map.containsKey('c')) {
+                count += Math.min(map.get('a'), Math.min(map.get('b'), map.get('c'))) + 1;
             }
         }
 
         return count;
     }
-}
+    }
